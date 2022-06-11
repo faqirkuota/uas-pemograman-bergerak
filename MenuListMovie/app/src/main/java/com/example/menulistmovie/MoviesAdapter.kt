@@ -1,6 +1,5 @@
 package com.example.menulistmovie
 
-import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -10,13 +9,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import java.util.concurrent.Executors
 
-
+/**
+ * @desc Karena untuk menjebatani data dengan tampilan listview maka kelompok kami memutuskan
+ * untuk menggunakan adapter
+ */
 class MoviesAdapter(val mContext : Context, val layoutResId : Int, val movList: List<Movies>) : ArrayAdapter<Movies>(mContext,layoutResId,movList){
+    /**
+     * @desc Methode ini dibuat untuk memparsing tampilan dengan data yang ada
+     */
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val layoutInflater : LayoutInflater = LayoutInflater.from(mContext)
         val view : View = layoutInflater.inflate(layoutResId, null)
@@ -33,8 +37,10 @@ class MoviesAdapter(val mContext : Context, val layoutResId : Int, val movList: 
         // in the ImageView
         val handler = Handler(Looper.getMainLooper())
 
+        /**
+         * @desc Code untuk menampilkan data ke layar popup
+         */
         executor.execute {
-
             // Tries to get the image and post it in the ImageView
             // with the help of Handler
             try {
@@ -46,7 +52,6 @@ class MoviesAdapter(val mContext : Context, val layoutResId : Int, val movList: 
                     poster.setImageBitmap(image)
                 }
             }
-
             // If the URL does not point to
             // image or any other kind of failure
             catch (e: Exception) {
@@ -57,37 +62,6 @@ class MoviesAdapter(val mContext : Context, val layoutResId : Int, val movList: 
         tvNama.text = movies.title
         tvNamaKet.text = movies.plot
         tahun.text = movies.year
-
         return view
-
-    }
-
-    private fun showSearchDialog(movies: Movies) {
-        val builder = AlertDialog.Builder(mContext)
-        builder.setTitle("Edit Data")
-        val inflater = LayoutInflater.from(mContext)
-        val view = inflater.inflate(R.layout.search, null)
-        val txtNama = view.findViewById<EditText>(R.id.etnama)
-
-        txtNama.setText(movies.title)
-
-        builder.setView(view)
-//        builder.setPositiveButton("Update Data"){p0,p1 ->
-//            val dbMov = FirebaseDatabase.getInstance().getReference("movies")
-//            val nama = txtNama.text.toString().trim()
-//            if(nama.isEmpty()){
-//               txtNama.error = "Nama tidak boleh kosong"
-//               txtNama.requestFocus()
-//               return@setPositiveButton
-//            }
-//            val movies = Movies(movies.id, nama)
-//            dbMov.child(movies.id!!).setValue(movies)
-//            Toast.makeText(mContext,"Update data sukses", Toast.LENGTH_LONG).show()
-//        }
-        builder.setNegativeButton("No") { p0, p1 ->
-
-        }
-        val alert = builder.create()
-        alert.show()
     }
 }
