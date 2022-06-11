@@ -18,12 +18,20 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+        /**
+         * @desc Membuat initilisasi variabel pada layout
+         */
         otentikasi = FirebaseAuth.getInstance()
         btnSimpan = findViewById(R.id.bSimpan)
         btnLogin = findViewById(R.id.bLogin)
         txtEmail = findViewById(R.id.etEmailReg)
         txtPassword = findViewById(R.id.etPasswordReg)
 
+        /**
+         * @desc Membuat on click listener pada btn Simpan dan juga memvalidasi email dan passsword
+         * Beserta format email
+         * Serta memanggil methode registerUser
+         */
         btnSimpan.setOnClickListener {
             val email = txtEmail.text.toString().trim()
             val password = txtPassword.text.toString().trim()
@@ -45,12 +53,23 @@ class RegisterActivity : AppCompatActivity() {
             }
             registerUser(email, password)
         }
+
+        /**
+         * @desc Membuat on click listener pada btn login agar langsung mengarahkan pada halaman
+         * Login
+         */
         btnLogin.setOnClickListener {
             Intent(this@RegisterActivity, MainActivity::class.java).also {
                 startActivity(it)
             }
         }
     }
+
+    /**
+     * @desc Methode ini untuk meregister user ke firebase serta menvalidasi otentikasi email dan password yang dimasukan
+     * Dan dituliskan logic jika register sebagai admin maka diarahkan kehalaman Search Khusus admin
+     * Dan Jika register sebagai non admin maka diarahkan kehalaman login khusus user
+     */
     private fun registerUser(email: String, password: String) {
         otentikasi.createUserWithEmailAndPassword(email,password)
             .addOnCompleteListener(this){
@@ -72,13 +91,4 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
     }
-//    override fun onStart() {
-//        super.onStart()
-//        if(otentikasi.currentUser != null) {
-//            Intent(this@RegisterActivity, SearchActivity::class.java).also { intent ->
-//                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                startActivity(intent)
-//            }
-//        }
-//    }
 }
