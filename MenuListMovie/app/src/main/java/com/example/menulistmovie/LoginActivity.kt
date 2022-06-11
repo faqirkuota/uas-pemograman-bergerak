@@ -17,12 +17,12 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var otentikasi : FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        otentikasi = FirebaseAuth.getInstance()
+        setContentView(R.layout.activity_login)
         btnRegister = findViewById(R.id.bRegister)
         txtEmail = findViewById(R.id.etEmail)
         txtPassword = findViewById(R.id.etPassword)
         btnLogin = findViewById(R.id.bLogin)
+        otentikasi = FirebaseAuth.getInstance()
 
         btnLogin.setOnClickListener {
             val email = txtEmail.text.toString().trim()
