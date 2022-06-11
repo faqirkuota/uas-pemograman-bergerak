@@ -56,9 +56,16 @@ class LoginActivity : AppCompatActivity() {
         otentikasi.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) {
                 if (it.isSuccessful) {
-                    Intent(this@LoginActivity, SearchActivity::class.java).also { intent ->
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(intent)
+                    if (email == "admin@gmail.com"){
+                        Intent(this@LoginActivity, SearchActivity::class.java).also { intent ->
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(intent)
+                        }
+                    }else{
+                        Intent(this@LoginActivity, MainActivity::class.java).also { intent ->
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(intent)
+                        }
                     }
                 }else{
                     Toast.makeText(this,"${it.exception?.message}", Toast.LENGTH_LONG).show()

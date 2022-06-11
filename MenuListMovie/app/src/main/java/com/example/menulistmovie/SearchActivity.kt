@@ -17,7 +17,7 @@ class SearchActivity : AppCompatActivity() {
         viewLogout =  findViewById(R.id.vLogout)
         viewLogout.setOnClickListener {
             otentikasi.signOut()
-            Intent(this@SearchActivity, MainActivity::class.java).also {
+            Intent(this@SearchActivity, LoginActivity::class.java).also {
                 it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(it)
             }

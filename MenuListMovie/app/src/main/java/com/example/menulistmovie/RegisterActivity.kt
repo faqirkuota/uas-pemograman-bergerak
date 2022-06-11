@@ -55,9 +55,16 @@ class RegisterActivity : AppCompatActivity() {
         otentikasi.createUserWithEmailAndPassword(email,password)
             .addOnCompleteListener(this){
                 if(it.isSuccessful){
-                    Intent(this@RegisterActivity, SearchActivity::class.java).also {
-                        it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(it)
+                    if (email == "admin@gmail.com"){
+                        Intent(this@RegisterActivity, SearchActivity::class.java).also { intent ->
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(intent)
+                        }
+                    }else{
+                        Intent(this@RegisterActivity, MainActivity::class.java).also { intent ->
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(intent)
+                        }
                     }
                 }else{
                     Toast.makeText(this, it.exception?.message, Toast.LENGTH_LONG).show()
