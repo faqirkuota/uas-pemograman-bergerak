@@ -17,7 +17,7 @@
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logoupj" />
+        app:srcCompat="@drawable/logokel" />
 
     <EditText
         android:id="@+id/etnama"
@@ -38,6 +38,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Cari Judul"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/etnama"
         app:layout_constraintStart_toStartOf="@+id/etnama"
         app:layout_constraintTop_toBottomOf="@+id/etnama" />

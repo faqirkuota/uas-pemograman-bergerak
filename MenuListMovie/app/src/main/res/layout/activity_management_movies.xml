@@ -16,7 +16,7 @@
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logoupj" />
+        app:srcCompat="@drawable/logokel" />
 
     <EditText
         android:id="@+id/etnama"
