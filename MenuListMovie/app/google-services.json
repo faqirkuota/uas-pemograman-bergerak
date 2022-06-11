@@ -1,34 +1,33 @@
 {
   "project_info": {
-    "project_number": "266652837228",
-    "firebase_url": "https://rentmovies-5dd75-default-rtdb.firebaseio.com",
-    "project_id": "rentmovies-5dd75",
-    "storage_bucket": "rentmovies-5dd75.appspot.com"
+    "project_number": "248216122828",
+    "project_id": "uas-pb-9dce6",
+    "storage_bucket": "uas-pb-9dce6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:266652837228:android:b6a8814d010341584c7f49",
+        "mobilesdk_app_id": "1:248216122828:android:59455effb96423a6ced969",
         "android_client_info": {
           "package_name": "com.example.menulistmovie"
         }
       },
       "oauth_client": [
         {
-          "client_id": "266652837228-9t4ha0eoavl1pl5gntg78ebflad1civ6.apps.googleusercontent.com",
+          "client_id": "248216122828-i9tq73enfvgbqhgmdnomft3tuljc91bu.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDJWrkbm8Pf63E5AarsQMXWOZSqQZPF7LY"
+          "current_key": "AIzaSyBsnRkHOuksrIa03HA8-veoM4c_3Zp74aw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "266652837228-9t4ha0eoavl1pl5gntg78ebflad1civ6.apps.googleusercontent.com",
+              "client_id": "248216122828-i9tq73enfvgbqhgmdnomft3tuljc91bu.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
