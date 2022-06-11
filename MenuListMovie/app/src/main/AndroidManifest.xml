@@ -11,10 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MenuListMovie">
         <activity
-            android:name=".ManagementMoviesActivity"
+            android:name=".EditMovieActivity"
             android:exported="false" />
         <activity
-            android:name=".ManagemntMoviesActivity"
+            android:name=".ManagementMoviesActivity"
             android:exported="false" />
         <activity
             android:name=".SearchActivity"
