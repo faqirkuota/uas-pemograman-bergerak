@@ -13,11 +13,21 @@ import android.widget.*
 import com.google.firebase.database.FirebaseDatabase
 import java.util.concurrent.Executors
 
-
+/**
+ * @desc Karena untuk menjebatani data dengan tampilan listview maka kelompok kami memutuskan
+ * untuk menggunakan adapter
+ */
 class MoviesMgAdapter (val mContext : Context, val layoutResId : Int, val movList: List<Movies>) : ArrayAdapter<Movies>(mContext,layoutResId,movList){
+    /**
+     * @desc Inisiasi variabel global
+     */
     val executor = Executors.newSingleThreadExecutor()
     var image: Bitmap? = null
     val handler = Handler(Looper.getMainLooper())
+
+    /**
+     * @desc Methode ini dibuat untuk memparsing tampilan dengan data yang ada
+     */
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val layoutInflater : LayoutInflater = LayoutInflater.from(mContext)
         val view : View = layoutInflater.inflate(layoutResId, null)
@@ -27,6 +37,9 @@ class MoviesMgAdapter (val mContext : Context, val layoutResId : Int, val movLis
         val bEditMg : TextView = view.findViewById(R.id.bEditMg)
         val movies : Movies = movList[position]
 
+        /**
+         * @desc Code ini dibuat untuk mengenerate image dari url
+         */
         executor.execute {
             // Tries to get the image and post it in the ImageView
             // with the help of Handler
@@ -46,6 +59,7 @@ class MoviesMgAdapter (val mContext : Context, val layoutResId : Int, val movLis
                 e.printStackTrace()
             }
         }
+
         tvNamaMg.text = movies.title
         tvTahunMg.text = movies.year
         val movie : Movies = movList[position]
@@ -55,17 +69,25 @@ class MoviesMgAdapter (val mContext : Context, val layoutResId : Int, val movLis
         return view
     }
 
+    /**
+     * @desc Methode ini dibuat untuk menampilkan layar popup dari layout activity_edit_movie
+     */
     private fun showUpdateDialog(movie: Movies) {
+        /**
+         * @desc Membuat initilisasi variabel pada layout
+         */
         val builder = AlertDialog.Builder(mContext)
         builder.setTitle("Edit Data Movie")
         val  inflater = LayoutInflater.from(mContext)
         val view = inflater.inflate(R.layout.activity_edit_movie, null)
-
         val etNamaJudul = view.findViewById<EditText>(R.id.etNamaJudul)
         val etTahun = view.findViewById<EditText>(R.id.etTahun)
         val etKeterangan = view.findViewById<EditText>(R.id.etKeterangan)
         val etPoster = view.findViewById<ImageView>(R.id.etPoster)
 
+        /**
+         * @desc Code untuk menampilkan data ke layar popup
+         */
         etNamaJudul.setText(movie.title)
         etTahun.setText(movie.year)
         etKeterangan.setText(movie.plot)
@@ -89,6 +111,9 @@ class MoviesMgAdapter (val mContext : Context, val layoutResId : Int, val movLis
         }
 
         builder.setView(view)
+        /**
+         * @desc Code untuk mengupdate value ke firebase
+         */
         builder.setPositiveButton("Update"){p0,p1 ->
             val movieList = FirebaseDatabase.getInstance().getReference("movieList")
             val namaJudul = etNamaJudul.text.toString().trim()
@@ -109,14 +134,21 @@ class MoviesMgAdapter (val mContext : Context, val layoutResId : Int, val movLis
             movieList.child(movie.id!!).setValue(movie)
             Toast.makeText(mContext,"Update data sukses", Toast.LENGTH_LONG).show()
         }
+        /**
+         * @desc Code untuk menutup layar popup
+         */
         builder.setNeutralButton("No"){p0,p1 ->
-
         }
+
+        /**
+         * @desc Code untuk menghapus value ke firebase
+         */
         builder.setNegativeButton("Delete"){p0,p1 ->
             val delMhs = FirebaseDatabase.getInstance().getReference("movieList").child(movie.id)
             delMhs.removeValue()
             Toast.makeText(mContext,"Data Sudah dihapus", Toast.LENGTH_LONG).show()
         }
+
         val alert = builder.create()
         alert.show()
     }
