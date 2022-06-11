@@ -74,24 +74,46 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 
     private fun tampilData(judul:String){
-        ref.child(judul).addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    movList.clear()
-                    for(h : DataSnapshot in snapshot.children){
-                        val movies : Movies? = h.getValue(Movies::class.java)
-                        if(movies != null){
+        if (judul == ""){
+            ref.addValueEventListener(object : ValueEventListener {
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()){
+                        movList.clear()
+                        for(h : DataSnapshot in snapshot.children){
+                            val movies : Movies? = h.getValue(Movies::class.java)
+                            if(movies != null){
+                                movList.add(movies)
+                            }
+                        }
+                        val adapter = MoviesAdapter(this@MainActivity, R.layout.movie_item, movList)
+                        listMov.adapter = adapter
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+        }else {
+            ref.child(judul).addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        movList.clear()
+                        val movies: Movies? = snapshot.getValue(Movies::class.java)
+                        if (movies != null) {
                             movList.add(movies)
                         }
+                        val adapter = MoviesAdapter(this@MainActivity, R.layout.movie_item, movList)
+                        listMov.adapter = adapter
                     }
-                    val adapter = MoviesAdapter(this@MainActivity, R.layout.movie_item, movList)
-                    listMov.adapter = adapter
                 }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
+        }
     }
 }
