@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
+
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var txtNama : EditText
     private lateinit var btnCari : Button
@@ -61,27 +62,36 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(it)
             }
         }
+
+        btnCari.setOnClickListener {
+            tampilData(txtNama.text.toString())
+        }
     }
 
     override fun onClick(p0: View?) {
-        simpanData()
+
     }
 
 
-    private fun simpanData(){
-//        val nama : String = txtNama.text.toString().trim()
-//        if(nama.isEmpty()) {
-//            txtNama.error = "Masukkan judul"
-//            return
-//        }
-//        //  val ref = FirebaseDatabase.getInstance().getReference("dbMovies")
-//        val movId = ref.push().key
-//
-//        val movies = Movies(movId!!, nama)
-//        if(movId != null){
-//            ref.child(movId).setValue(movies).addOnCompleteListener {
-//                Toast.makeText(applicationContext, "Data berhasil di simpan", Toast.LENGTH_LONG).show()
-//            }
-//        }
+    private fun tampilData(judul:String){
+        ref.child(judul).addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    movList.clear()
+                    for(h : DataSnapshot in snapshot.children){
+                        val movies : Movies? = h.getValue(Movies::class.java)
+                        if(movies != null){
+                            movList.add(movies)
+                        }
+                    }
+                    val adapter = MoviesAdapter(this@MainActivity, R.layout.movie_item, movList)
+                    listMov.adapter = adapter
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
     }
 }

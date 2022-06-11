@@ -126,10 +126,13 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun simpanData(idImdbFilm:String, judulFilm: String, yearFilm:String, plotFilm:String, posterFilmUrl:String){
-        val idImdbFilm = ref.push().key
+        val delMovieExisting = FirebaseDatabase.getInstance().getReference("movieList").child(this.idImdbFilm)
+        delMovieExisting.removeValue()
 
-        val mhs = Movies(idImdbFilm!!, judulFilm, posterFilmUrl, plotFilm, yearFilm)
-        ref.child(idImdbFilm).setValue(mhs).addOnCompleteListener {
+        this.idImdbFilm = ref.push().key.toString()
+
+        val mhs = Movies(this.idImdbFilm, judulFilm, posterFilmUrl, plotFilm, yearFilm)
+        ref.child(judulFilm).setValue(mhs).addOnCompleteListener {
             Toast.makeText(applicationContext, "Data berhasil di simpan", Toast.LENGTH_LONG).show()
         }
     }
