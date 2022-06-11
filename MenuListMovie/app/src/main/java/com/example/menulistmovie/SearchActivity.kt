@@ -40,7 +40,7 @@ class SearchActivity : AppCompatActivity() {
         /**
          * @desc Membuat initilisasi variabel pada layout
          */
-        ref = FirebaseDatabase.getInstance().getReference("movieList")
+        ref = FirebaseDatabase.getInstance().getReference("dbMovie")
         otentikasi = FirebaseAuth.getInstance()
         judul = findViewById(R.id.judul)
         tahun = findViewById(R.id.tahun)
@@ -158,7 +158,7 @@ class SearchActivity : AppCompatActivity() {
     private fun simpanData(idImdbFilm:String, judulFilm: String, yearFilm:String, plotFilm:String, posterFilmUrl:String){
 
         // Remove Data Existing
-        val delMovieExisting = FirebaseDatabase.getInstance().getReference("movieList").child(this.idImdbFilm)
+        val delMovieExisting = FirebaseDatabase.getInstance().getReference("dbMovie").child(this.idImdbFilm)
         delMovieExisting.removeValue()
 
         // Save Data to Firebase

@@ -115,7 +115,7 @@ class MoviesMgAdapter (val mContext : Context, val layoutResId : Int, val movLis
          * @desc Code untuk mengupdate value ke firebase
          */
         builder.setPositiveButton("Update"){p0,p1 ->
-            val movieList = FirebaseDatabase.getInstance().getReference("movieList")
+            val dbMovie = FirebaseDatabase.getInstance().getReference("dbMovie")
             val namaJudul = etNamaJudul.text.toString().trim()
             val tahun = etTahun.text.toString().trim()
             val keterangan = etKeterangan.text.toString().trim()
@@ -131,7 +131,7 @@ class MoviesMgAdapter (val mContext : Context, val layoutResId : Int, val movLis
                 return@setPositiveButton
             }
             val movie = Movies(movie.id, namaJudul,movie.poster,keterangan, tahun)
-            movieList.child(movie.id!!).setValue(movie)
+            dbMovie.child(movie.title).setValue(movie)
             Toast.makeText(mContext,"Update data sukses", Toast.LENGTH_LONG).show()
         }
         /**
@@ -144,7 +144,7 @@ class MoviesMgAdapter (val mContext : Context, val layoutResId : Int, val movLis
          * @desc Code untuk menghapus value ke firebase
          */
         builder.setNegativeButton("Delete"){p0,p1 ->
-            val delMhs = FirebaseDatabase.getInstance().getReference("movieList").child(movie.id)
+            val delMhs = FirebaseDatabase.getInstance().getReference("dbMovie").child(movie.title)
             delMhs.removeValue()
             Toast.makeText(mContext,"Data Sudah dihapus", Toast.LENGTH_LONG).show()
         }

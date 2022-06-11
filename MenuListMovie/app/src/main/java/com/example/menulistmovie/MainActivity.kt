@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         /**
          * @desc Membuat initilisasi variabel pada layout
          */
-        ref = FirebaseDatabase.getInstance().getReference("movieList")
+        ref = FirebaseDatabase.getInstance().getReference("dbMovie")
         txtNama = findViewById(R.id.etnama)
         btnCari = findViewById(R.id.bSearch)
         listMov = findViewById(R.id.lvmov)

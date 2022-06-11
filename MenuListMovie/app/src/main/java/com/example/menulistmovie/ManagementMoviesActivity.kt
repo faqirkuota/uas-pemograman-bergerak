@@ -22,7 +22,7 @@ class ManagementMoviesActivity : AppCompatActivity() {
         /**
          * @desc Membuat initilisasi variabel pada layout
          */
-        ref = FirebaseDatabase.getInstance().getReference("movieList")
+        ref = FirebaseDatabase.getInstance().getReference("dbMovie")
         listMgMov = findViewById(R.id.lvmgmov)
         movMgList = mutableListOf()
         logout = findViewById(R.id.logoutmg)
