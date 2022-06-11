@@ -36,6 +36,10 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
+
+        /**
+         * @desc Membuat initilisasi variabel pada layout
+         */
         ref = FirebaseDatabase.getInstance().getReference("movieList")
         otentikasi = FirebaseAuth.getInstance()
         judul = findViewById(R.id.judul)
@@ -49,6 +53,12 @@ class SearchActivity : AppCompatActivity() {
         posterUrl = "";
         idImdbFilm = "";
         viewLogout =  findViewById(R.id.logout)
+
+
+        /**
+         * @desc Code ini membuat on click listener pada tombol logout agar mensignout otentikasi
+         * yang sudah ada
+         */
         viewLogout.setOnClickListener {
             otentikasi.signOut()
             Intent(this@SearchActivity, LoginActivity::class.java).also {
@@ -56,13 +66,27 @@ class SearchActivity : AppCompatActivity() {
                 startActivity(it)
             }
         }
+
+        /**
+         * @desc Code ini membuat on click listener pada tombol cari agar melakukan hit api
+         * untuk mencari film dan menampilkannya
+         */
         btnCari.setOnClickListener {
             tampilData(txtNama.text.toString())
         }
 
+        /**
+         * @desc Code ini membuat on click listener pada tombol tambah agar menyimpan data ke database
+         * firebase
+         */
         btnTambah.setOnClickListener {
             simpanData(idImdbFilm, judul.text.toString(), tahun.text.toString(), plot.text.toString(), posterUrl)
         }
+
+        /**
+         * @desc Code ini membuat on click listener pada tombol management film agar admin dapat mengedit dan menghapus
+         * film yang sudah tersimpan
+         */
         btnManagement.setOnClickListener {
             Intent(this@SearchActivity, ManagementMoviesActivity::class.java).also {
                 it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -72,6 +96,9 @@ class SearchActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * @desc Function untuk Melakukan hit ke omdbapi dan menampilkan hasil responsenya
+     */
     private fun tampilData(judulFilm: String) {
         val url = "http://www.omdbapi.com/?apikey=ac9be4e3&t=$judulFilm"
         val queue = Volley.newRequestQueue(this)
@@ -125,10 +152,16 @@ class SearchActivity : AppCompatActivity() {
         queue.add(stringReq)
     }
 
+    /**
+     * @desc Function untuk Menyimpan Data ke Firebase Database
+     */
     private fun simpanData(idImdbFilm:String, judulFilm: String, yearFilm:String, plotFilm:String, posterFilmUrl:String){
+
+        // Remove Data Existing
         val delMovieExisting = FirebaseDatabase.getInstance().getReference("movieList").child(this.idImdbFilm)
         delMovieExisting.removeValue()
 
+        // Save Data to Firebase
         this.idImdbFilm = ref.push().key.toString()
 
         val mhs = Movies(this.idImdbFilm, judulFilm, posterFilmUrl, plotFilm, yearFilm)
