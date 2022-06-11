@@ -1,12 +1,12 @@
 package com.example.menulistmovie
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class RegisterActivity : AppCompatActivity() {
@@ -61,23 +61,24 @@ class RegisterActivity : AppCompatActivity() {
                             startActivity(intent)
                         }
                     }else{
-                        Intent(this@RegisterActivity, MainActivity::class.java).also { intent ->
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        Intent(this@RegisterActivity, LoginActivity::class.java).also { intent ->
+                            intent.flags =
+                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             startActivity(intent)
                         }
                     }
-                }else{
+                } else {
                     Toast.makeText(this, it.exception?.message, Toast.LENGTH_LONG).show()
                 }
             }
     }
-    override fun onStart() {
-        super.onStart()
-        if(otentikasi.currentUser != null) {
-            Intent(this@RegisterActivity, SearchActivity::class.java).also { intent ->
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
-            }
-        }
-    }
+//    override fun onStart() {
+//        super.onStart()
+//        if(otentikasi.currentUser != null) {
+//            Intent(this@RegisterActivity, SearchActivity::class.java).also { intent ->
+//                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                startActivity(intent)
+//            }
+//        }
+//    }
 }
