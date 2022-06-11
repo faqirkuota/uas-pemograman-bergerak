@@ -24,7 +24,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        /**
+         * @desc Membuat initilisasi variabel pada layout
+         */
         ref = FirebaseDatabase.getInstance().getReference("movieList")
         txtNama = findViewById(R.id.etnama)
         btnCari = findViewById(R.id.bSearch)
@@ -33,8 +35,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         movList = mutableListOf()
         logout = findViewById(R.id.logout)
         otentikasi = FirebaseAuth.getInstance()
-        ref.addValueEventListener(object : ValueEventListener {
 
+        /**
+         * @desc Code ini dioverride onDataChange agar menampilkan data dari firebase
+         * dan diparsing menjadi layout movie_item
+         * Sedangkan methode onCancelled tidak terpakai
+         */
+        ref.addValueEventListener(object : ValueEventListener {
     override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     movList.clear()
@@ -48,13 +55,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     listMov.adapter = adapter
                 }
             }
-
     override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
             }
-
         })
 
+        /**
+         * @desc Code ini membuat on click listener pada tombol logout agar mensignout otentikasi
+         * yang sudah ada
+         */
         logout.setOnClickListener {
             otentikasi.signOut()
             Intent(this@MainActivity, LoginActivity::class.java).also {
@@ -63,16 +71,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
 
+        /**
+         * @desc Code ini membuat on click listener pada tombol cari untuk mencari data berdasarkan
+         * judul file (Case Sensitive)
+         */
         btnCari.setOnClickListener {
             tampilData(txtNama.text.toString())
         }
     }
 
     override fun onClick(p0: View?) {
-
     }
 
-
+    /**
+     * @desc Methode ini untuk mencari data berdasarkan judul pada firebase dan ditampilkan
+     * dan juga ada logic dimana user tidak mengetik apa-apa pada kolom pencarian
+     * maka aplikasi akan menampilkan semua data yang ada di firebase
+     */
     private fun tampilData(judul:String){
         if (judul == ""){
             ref.addValueEventListener(object : ValueEventListener {

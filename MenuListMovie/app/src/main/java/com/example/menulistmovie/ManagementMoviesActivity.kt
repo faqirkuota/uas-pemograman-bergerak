@@ -42,8 +42,6 @@ class ManagementMoviesActivity : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {
             }
         })
-
-
         logout.setOnClickListener {
             otentikasi.signOut()
             Intent(this@ManagementMoviesActivity, LoginActivity::class.java).also {
@@ -52,6 +50,4 @@ class ManagementMoviesActivity : AppCompatActivity() {
             }
         }
     }
-
-
 }
