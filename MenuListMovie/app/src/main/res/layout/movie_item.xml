@@ -19,8 +19,8 @@
 
     <TextView
         android:id="@+id/tvnamaKet"
-        android:layout_width="277dp"
-        android:layout_height="82dp"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:text="Keterangan film"
@@ -42,22 +42,6 @@
         android:textSize="13sp"
         app:layout_constraintStart_toEndOf="@+id/poster"
         app:layout_constraintTop_toBottomOf="@+id/tvnamaKet" />
-
-    <TextView
-        android:id="@+id/tvedit"
-        android:layout_width="62dp"
-        android:layout_height="20dp"
-        android:text="Sewa"
-        android:textAlignment="textEnd"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.83"
-        app:layout_constraintStart_toEndOf="@+id/tvnamayear"
-        app:layout_constraintTop_toTopOf="@+id/tvnamaKet"
-        app:layout_constraintVertical_bias="0.869" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
