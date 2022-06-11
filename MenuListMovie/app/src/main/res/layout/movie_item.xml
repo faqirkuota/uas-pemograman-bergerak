@@ -7,8 +7,8 @@
 
     <TextView
         android:id="@+id/tvnama"
-        android:layout_width="245dp"
-        android:layout_height="30dp"
+        android:layout_width="297dp"
+        android:layout_height="28dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Nama Judul"
@@ -19,8 +19,8 @@
 
     <TextView
         android:id="@+id/tvnamaKet"
-        android:layout_width="245dp"
-        android:layout_height="76dp"
+        android:layout_width="299dp"
+        android:layout_height="88dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:text="Keterangan film"
@@ -31,10 +31,10 @@
 
     <TextView
         android:id="@+id/tvnamayear"
-        android:layout_width="112dp"
+        android:layout_width="60dp"
         android:layout_height="29dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="10dp"
         android:text="Tahun"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="13sp"
@@ -52,10 +52,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.651"
+        app:layout_constraintHorizontal_bias="0.83"
         app:layout_constraintStart_toEndOf="@+id/tvnamayear"
         app:layout_constraintTop_toTopOf="@+id/tvnamaKet"
-        app:layout_constraintVertical_bias="0.867" />
+        app:layout_constraintVertical_bias="0.869" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
