@@ -37,6 +37,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Cari Judul"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/etnama"
         app:layout_constraintStart_toStartOf="@+id/etnama"
         app:layout_constraintTop_toBottomOf="@+id/etnama" />
@@ -45,9 +47,11 @@
         android:id="@+id/lvmov"
         android:layout_width="0dp"
         android:layout_height="551dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/bSearch"
         app:layout_constraintStart_toStartOf="@+id/bSearch"
         app:layout_constraintTop_toBottomOf="@+id/bSearch" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

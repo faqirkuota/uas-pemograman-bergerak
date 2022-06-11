@@ -14,52 +14,64 @@
         android:text="Nama Judul"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/poster"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvnamaKet"
-        android:layout_width="244dp"
-        android:layout_height="49dp"
+        android:layout_width="245dp"
+        android:layout_height="76dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:text="Keterangan film"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="13sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/poster"
         app:layout_constraintTop_toBottomOf="@+id/tvnama" />
+
+    <TextView
+        android:id="@+id/tvnamayear"
+        android:layout_width="112dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:text="Tahun"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="13sp"
+        app:layout_constraintStart_toEndOf="@+id/poster"
+        app:layout_constraintTop_toBottomOf="@+id/tvnamaKet" />
 
     <TextView
         android:id="@+id/tvedit"
         android:layout_width="62dp"
         android:layout_height="20dp"
         android:text="Sewa"
+        android:textAlignment="textEnd"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="15sp"
         android:textStyle="bold"
-        android:textAlignment="textEnd"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.857"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.651"
+        app:layout_constraintStart_toEndOf="@+id/tvnamayear"
         app:layout_constraintTop_toTopOf="@+id/tvnamaKet"
-        app:layout_constraintVertical_bias="0.685" />
+        app:layout_constraintVertical_bias="0.867" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="159dp" />
+        app:layout_constraintGuide_begin="183dp" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="93dp"
-        android:layout_height="132dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/poster"
+        android:layout_width="96dp"
+        android:layout_height="148dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/logokalbis" />
+        tools:srcCompat="@drawable/dummy" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
