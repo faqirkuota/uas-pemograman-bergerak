@@ -1,27 +1,20 @@
 package com.example.menulistmovie
 
-import android.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
-import com.android.volley.RequestQueue
 import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.NetworkImageView
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import org.json.JSONArray
-import org.json.JSONException
 import org.json.JSONObject
 import java.util.concurrent.Executors
 
@@ -32,6 +25,7 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var tahun: TextView
     private lateinit var plot: TextView
     private lateinit var btnCari: Button
+    private lateinit var btnManagement: Button
     private lateinit var btnTambah: Button
     private lateinit var txtNama: EditText
     private lateinit var poster: ImageView
@@ -49,6 +43,7 @@ class SearchActivity : AppCompatActivity() {
         plot = findViewById(R.id.plot)
         txtNama = findViewById(R.id.etnamaSearch)
         btnCari = findViewById(R.id.bSearchAdmin)
+        btnManagement = findViewById(R.id.bManagementAdmin)
         btnTambah = findViewById(R.id.bAddFilm)
         poster = findViewById(R.id.poster)
         posterUrl = "";
@@ -67,6 +62,12 @@ class SearchActivity : AppCompatActivity() {
 
         btnTambah.setOnClickListener {
             simpanData(idImdbFilm, judul.text.toString(), tahun.text.toString(), plot.text.toString(), posterUrl)
+        }
+        btnManagement.setOnClickListener {
+            Intent(this@SearchActivity, ManagementMoviesActivity::class.java).also {
+                it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(it)
+            }
         }
 
     }

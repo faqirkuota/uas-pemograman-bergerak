@@ -24,13 +24,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="159dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="723dp" />
-
     <ImageView
         android:id="@+id/ivPosterMg"
         android:layout_width="93dp"
@@ -43,14 +36,14 @@
 
     <TextView
         android:id="@+id/bEditMg"
-        android:layout_width="37dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="116dp"
-        android:text="Edit"
+        android:layout_width="49dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="188dp"
+        android:layout_marginTop="28dp"
+        android:text="Update"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/ivPosterMg"
         app:layout_constraintTop_toBottomOf="@+id/tvTahunMg" />
 
@@ -65,19 +58,5 @@
         app:layout_constraintHorizontal_bias="0.078"
         app:layout_constraintStart_toEndOf="@+id/ivPosterMg"
         app:layout_constraintTop_toBottomOf="@+id/tvNamaMg" />
-
-    <TextView
-        android:id="@+id/bDeleteMg"
-        android:layout_width="53dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:text="Delete"
-        android:textColor="#D8482B"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.153"
-        app:layout_constraintStart_toEndOf="@+id/bEditMg"
-        app:layout_constraintTop_toBottomOf="@+id/tvTahunMg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

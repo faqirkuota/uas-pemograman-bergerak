@@ -1,5 +1,6 @@
 package com.example.menulistmovie
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ListView
 import android.widget.TextView
@@ -22,6 +23,7 @@ class ManagementMoviesActivity : AppCompatActivity() {
         listMgMov = findViewById(R.id.lvmgmov)
         movMgList = mutableListOf()
         logout = findViewById(R.id.logoutmg)
+        otentikasi = FirebaseAuth.getInstance()
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
@@ -40,6 +42,15 @@ class ManagementMoviesActivity : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {
             }
         })
+
+
+        logout.setOnClickListener {
+            otentikasi.signOut()
+            Intent(this@ManagementMoviesActivity, LoginActivity::class.java).also {
+                it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(it)
+            }
+        }
     }
 
 

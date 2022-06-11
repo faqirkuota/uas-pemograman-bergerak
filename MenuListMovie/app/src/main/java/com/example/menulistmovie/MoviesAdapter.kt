@@ -15,6 +15,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import java.util.concurrent.Executors
 
+
 class MoviesAdapter(val mContext : Context, val layoutResId : Int, val movList: List<Movies>) : ArrayAdapter<Movies>(mContext,layoutResId,movList){
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val layoutInflater : LayoutInflater = LayoutInflater.from(mContext)
@@ -56,8 +57,6 @@ class MoviesAdapter(val mContext : Context, val layoutResId : Int, val movList: 
         tvNama.text = movies.title
         tvNamaKet.text = movies.plot
         tahun.text = movies.year
-
-
 
         return view
 
